@@ -1,7 +1,4 @@
-<?php
-include '../includes/header.inc.php';
-include '../includes/navbar.inc.php';
-?>
+
     <h1 class="mx-auto p-2 container text-center">
         Register
     </h1>
@@ -26,7 +23,3 @@ include '../includes/navbar.inc.php';
         </div>
         <button type="submit" class="btn btn-primary container text-center">Submit</button>
     </form>
-
-<?php
-include '../includes/footer.inc.php';
-?>
