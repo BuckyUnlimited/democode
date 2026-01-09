@@ -1,5 +1,4 @@
 
-
 <?php
 $usernameErr = $passwdErr = "";
 if (isset($_POST['username']) && isset($_POST['passwd'])) {
