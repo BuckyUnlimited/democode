@@ -17,8 +17,8 @@
                             Auth
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/website/pages/login.php">Login</a></li>
-                            <li><a class="dropdown-item" href="/website/pages/register.php">Register</a></li>
+                            <li><a class="dropdown-item" href="./?page=login">Login</a></li>
+                            <li><a class="dropdown-item" href="./?page=register">Register</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">

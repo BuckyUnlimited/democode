@@ -1,18 +1,21 @@
 <?php
+require_once './init/db.init.php';
 include './includes/header.inc.php';
 include './includes/navbar.inc.php';
 
 
 $avialable_pages = ['login', 'register'];
+//isset it is used to check whether a variable is set or not
 if (isset($_GET["page"])) {
     $page = $_GET["page"];
     if (in_array($page, $avialable_pages)) {
         include './pages/' . $page . '.php';
     } else {
-        echo '<h1>Page Not found</h1>';
+        // echo '<h1>Page Not found</h1>';
+        include './pages/404error.php';
     }
 } else {
-    echo '<h1>Index Home</h1>';
+    include './pages/dashboard.php';
 }
 ?>
 
