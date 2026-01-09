@@ -3,7 +3,7 @@ include './includes/header.inc.php';
 include './includes/navbar.inc.php';
 ?>
     <h1 class="mx-auto p-2 container text-center">
-        Welcome to Our Website
+        Welcome to Our Website Version main
     </h1>
 
     <p class="mx-auto p-2 container text-center" style="width: 600px;">
