@@ -12,6 +12,14 @@ if (isset($_POST['username']) && isset($_POST['passwd'])) {
     if (empty($passwd)) {
         $passwdErr = "Password is required";
     }
+    if (empty($usernameErr) && empty($passwdErr)) {
+        if (logUserIn($db, $username, $passwd)) {
+            // Redirect to dashboard
+            header("Location: ./");
+        } else {
+            $usernameErr = "User not found or password incorrect";
+        }
+    }
 };
 ?>
 
@@ -21,21 +29,19 @@ if (isset($_POST['username']) && isset($_POST['passwd'])) {
 
 <form method="post" action="./?page=login" class="mx-auto my-auto  p-2" style="width: 500px; ">
     <div class="mb-3">
-        <label  class="form-label">Email address</label>
+        <label class="form-label">Email address</label>
         <input name="username" type="text" class="form-control
-         <?php echo empty($usernameErr) ? '' : 'is-invalid' ?>" 
-         value="<?php echo $username?>"
-         >
-         <div>
+         <?php echo empty($usernameErr) ? '' : 'is-invalid' ?>"
+            value="<?php echo $username ?>">
+        <div>
             <?php echo $usernameErr ?>
-         </div>
+        </div>
     </div>
     <div class="mb-3">
-        <label  class="form-label">Password</label>
+        <label class="form-label">Password</label>
         <input name="passwd" type="password" class="form-control 
         <?php echo empty($passwdErr) ? '' : 'is-invalid' ?>"
-        value="<?php echo $passwd?>"
-        >
+            value="<?php echo $passwd ?>">
         <div>
             <?php echo $passwdErr ?>
         </div>
