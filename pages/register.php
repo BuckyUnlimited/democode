@@ -1,6 +1,7 @@
 <?php
 $username = $passwd = $name = "";
 $usernameErr = $passwdErr = $nameErr = "";
+$usernameExists = "";
 // Check if username already exists
 if (isset($_POST['username']) && isset($_POST['passwd']) && isset($_POST['name']) && isset($_POST['confirm_passwd'])) {
     $username = $_POST['username'];
@@ -22,10 +23,8 @@ if (isset($_POST['username']) && isset($_POST['passwd']) && isset($_POST['name']
     if ($usernameExists = UserExists($db, $username, $name)) {
         $usernameErr = "Username already exists";
     } else {
-        $usernameErr = "";
         $usernameExists = false;
     }
-
     if (empty($nameErr) && empty($usernameErr) && empty($passwdErr)) {
         if (registerUser($db, $name, $username, $passwd)) {
 
@@ -63,8 +62,8 @@ if (isset($_POST['username']) && isset($_POST['passwd']) && isset($_POST['name']
     </div>
     <div class="mb-3">
         <label class="form-label">Password</label>
-        <input type="password" class="form-control <?php echo empty($passwdErr) ? '' : 'is-invalid' ?>" 
-        name="passwd" id="exampleInputPassword1">
+        <input type="password" class="form-control <?php echo empty($passwdErr) ? '' : 'is-invalid' ?>"
+            name="passwd" id="exampleInputPassword1">
         <div>
             <?php echo $passwdErr ?>
         </div>

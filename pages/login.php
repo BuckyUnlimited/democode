@@ -1,26 +1,27 @@
 <?php
-$username = $passwd = "";
-$usernameErr = $passwdErr = "";
-if (isset($_POST['username']) && isset($_POST['passwd'])) {
+$username = $passwd = '';
+$usernameErr = $passwdErr = '';
+if (isset($_POST['username'], $_POST['passwd'])) {
     $username = $_POST['username'];
     $passwd = $_POST['passwd'];
 
-
+    
     if (empty($username)) {
-        $usernameErr = "Username is required";
+        $usernameErr = 'Please input username.';
     }
     if (empty($passwd)) {
-        $passwdErr = "Password is required";
+        $passwdErr = 'Please input password.';
     }
     if (empty($usernameErr) && empty($passwdErr)) {
-        if (logUserIn($db, $username, $passwd)) {
-            // Redirect to dashboard
-            header("Location: ./");
+        $user = logUserIn($db , $username, $passwd);
+        if ($user !== false) {
+            $_SESSION['user_id'] = $user->id_user;
+            header('Location: ./?page=dashboard');
         } else {
-            $usernameErr = "User not found or password incorrect";
+            $usernameErr = 'Username or password khos hz.';
         }
     }
-};
+}
 ?>
 
 <h1 class="mx-auto p-2 container text-center">

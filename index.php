@@ -3,20 +3,29 @@ require_once './init/init.php';
 include './includes/header.inc.php';
 include './includes/navbar.inc.php';
 
+// unset($_SESSION['user_id']); // logout
+$user = loggedInUser();
 
-$avialable_pages = ['login', 'register'];
-//isset it is used to check whether a variable is set or not
-if (isset($_GET["page"])) {
-    $page = $_GET["page"];
-    if (in_array($page, $avialable_pages)) {
-        include './pages/' . $page . '.php';
-    } else {
-        // echo '<h1>Page Not found</h1>';
-        include './pages/404error.php';
-    }
-} else {
-    include './pages/dashboard.php';
+$avialable_pages = ['login', 'register', 'dashboard', 'logout'];
+$logged_in_pages = ['dashboard', 'logout'];
+$non_logged_in_pages = ['login', 'register'];
+$page = '';
+if (isset($_GET['page'])) {
+    $page = $_GET['page']; // login
 }
+if (in_array($page, $logged_in_pages) && empty($user)) {
+    header('Location: ./?page=login');
+}
+if (in_array($page, $non_logged_in_pages) && !empty($user)) {
+    header('Location: ./?page=dashboard');
+}
+if (in_array($page, $avialable_pages)) {
+    include './pages/' . $page . '.php';
+} else {
+    // header('Location: ./?page=dashboard');
+    header('Location: ./?page=login');
+}
+
 ?>
 
 <?php

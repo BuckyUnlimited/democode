@@ -1,4 +1,13 @@
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+<?php
+require_once './init/db.init.php';
+require_once './init/func/auth.func.init.php';
+
+if (isset($_POST['logout'])) {
+    logoutUser(); // default redirect to login.php
+}
+?>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="/website/">Navbar</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,6 +28,9 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="./?page=login">Login</a></li>
                             <li><a class="dropdown-item" href="./?page=register">Register</a></li>
+                            <form method="post">
+                                <button type="submit" class="dropdown-item" name="logout">Logout</button>
+                            </form>
                         </ul>
                     </li>
                     <li class="nav-item">
